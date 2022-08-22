@@ -1,12 +1,14 @@
 package ru.netology.data;
 
+
 import lombok.Value;
-import lombok.val;
 import ru.netology.page.DashboardPage;
+
 
 public class DataHelper {
     private DataHelper() {
     }
+
 
     @Value
     public static class AuthInfo {
@@ -24,24 +26,24 @@ public class DataHelper {
     }
 
     public static VerificationCode getVerificationCodeFor(AuthInfo authInfo) {
+
         return new VerificationCode("12345");
     }
 
     @Value
-    public static class Card {
-        private String number;
-        private int balance;
-
-
-        public static Card getFirstCardInfo() {
-            val dashboard = new DashboardPage();
-            return new Card("5559 0000 0000 0001", dashboard.getFirstCardBalance());
-        }
-
-        public static Card getSecondCardInfo() {
-            val dashboard = new DashboardPage();
-            return new Card("5559 0000 0000 0002", dashboard.getSecondCardBalance());
-        }
+    public static class CardInfo {
+        String cardNumber;
+        String id;
 
     }
+
+
+    public static CardInfo getFirstCardInfo() {
+        return new CardInfo("5559 0000 0000 0001", DashboardPage.idFirst.getId());
+    }
+
+    public static CardInfo getSecondCardInfo() {
+        return new CardInfo("5559 0000 0000 0002", DashboardPage.idSecond.getId());
+    }
 }
+
