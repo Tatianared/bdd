@@ -2,7 +2,6 @@ package ru.netology.data;
 
 
 import lombok.Value;
-import ru.netology.page.DashboardPage;
 
 
 public class DataHelper {
@@ -33,17 +32,16 @@ public class DataHelper {
     @Value
     public static class CardInfo {
         String cardNumber;
-        String id;
-
     }
 
-
     public static CardInfo getFirstCardInfo() {
-        return new CardInfo("5559 0000 0000 0001", DashboardPage.idFirst.getId());
+        return new CardInfo("5559 0000 0000 0001");
     }
 
     public static CardInfo getSecondCardInfo() {
-        return new CardInfo("5559 0000 0000 0002", DashboardPage.idSecond.getId());
+        return new CardInfo("5559 0000 0000 0002");
     }
+
+
 }
 

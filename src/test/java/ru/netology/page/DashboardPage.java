@@ -1,17 +1,15 @@
 package ru.netology.page;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import lombok.val;
 
-import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class DashboardPage {
-    // к сожалению, разработчики не дали нам удобного селектора, поэтому так
+
     private ElementsCollection cards = $$(".list__item div");
     private final String balanceStart = "баланс: ";
     private final String balanceFinish = " р.";
@@ -26,9 +24,24 @@ public class DashboardPage {
         heading.shouldBe(visible);
     }
 
-    public int getCardBalance(String id) {
-        val text = cards.find(attribute("data-test-dashboard", id)).text();
-        return extractBalance(text);
+    public TransferPage firstCardButton() {
+        buttonTransferToFirst.click();
+        return new TransferPage();
+    }
+
+    public TransferPage secondCardButton() {
+        buttonTransferToSecond.click();
+        return new TransferPage();
+    }
+
+    public int getFirstCardBalance() {
+        String valueFirst = idFirst.getText();
+        return extractBalance(valueFirst);
+    }
+
+    public int getSecondCardBalance() {
+        String valueSecond = idSecond.getText();
+        return extractBalance(valueSecond);
     }
 
     private int extractBalance(String text) {
@@ -37,4 +50,6 @@ public class DashboardPage {
         val value = text.substring(start + balanceStart.length(), finish);
         return Integer.parseInt(value);
     }
+
+
 }
