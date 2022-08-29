@@ -65,12 +65,7 @@ public class TransferTest {
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         var dashboardPage = verificationPage.validVerify(verificationCode);
         var firstCardInfo = getFirstCardInfo();
-        // var secondCardInfo = getSecondCardInfo();
-        var expectedBalanceFirstCard = dashboardPage.getFirstCardBalance() - amount;
-        var expectedBalanceSecondCard = dashboardPage.getSecondCardBalance() + amount;
         var transferPage = dashboardPage.secondCardButton();
-        dashboardPage = transferPage.moneyTransfer(firstCardInfo, amount);
-        assertEquals(expectedBalanceFirstCard, dashboardPage.getFirstCardBalance());
-        assertEquals(expectedBalanceSecondCard, dashboardPage.getSecondCardBalance());
+        transferPage.errorMessageForBalance();
     }
 }
