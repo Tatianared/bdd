@@ -15,10 +15,10 @@ public class DashboardPage {
     private final String balanceFinish = " р.";
     private SelenideElement heading = $("[data-test-id=dashboard]");
 
-    public static SelenideElement idFirst = $("[data-test-id=92df3f1c-a033-48e6-8390-206f6b1f56c0]");
-    public static SelenideElement idSecond = $("[data-test-id=0f3f5c2a-249e-4c3d-8287-09f7a039391d]");
-    private SelenideElement buttonTransferToFirst = $("[data-test-id=92df3f1c-a033-48e6-8390-206f6b1f56c0] [type='button']");
-    private SelenideElement buttonTransferToSecond = $("[data-test-id=0f3f5c2a-249e-4c3d-8287-09f7a039391d] [type='button']");
+    public static SelenideElement idFirst = $("[data-test-id=\"92df3f1c-a033-48e6-8390-206f6b1f56c0\"]");
+    public static SelenideElement idSecond = $("[data-test-id=\"0f3f5c2a-249e-4c3d-8287-09f7a039391d\"]");
+    private SelenideElement buttonTransferToFirst = $("[data-test-id=\"92df3f1c-a033-48e6-8390-206f6b1f56c0\"] [type=button]");
+    private SelenideElement buttonTransferToSecond = $("[data-test-id=\"0f3f5c2a-249e-4c3d-8287-09f7a039391d\"] [type=button]");
 
     public DashboardPage() {
         heading.shouldBe(visible);

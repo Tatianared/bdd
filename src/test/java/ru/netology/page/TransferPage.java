@@ -14,6 +14,6 @@ public class TransferPage {
         amountCard.setValue(String.valueOf(amount));
         from.setValue(card.getCardNumber());
         sendButtton.click();
-        return null;
+        return new DashboardPage();
     }
 }

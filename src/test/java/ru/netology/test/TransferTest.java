@@ -37,4 +37,40 @@ public class TransferTest {
         assertEquals(expectedBalanceFirstCard, dashboardPage.getFirstCardBalance());
         assertEquals(expectedBalanceSecondCard, dashboardPage.getSecondCardBalance());
     }
+
+    @Test
+    void shouldTransferSecondToFirstCard() {
+        int amount = 500;
+        var loginPage = new LoginPage();
+        var authInfo = DataHelper.getAuthInfo();
+        var verificationPage = loginPage.validLogin(authInfo);
+        var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
+        var dashboardPage = verificationPage.validVerify(verificationCode);
+        var firstCardInfo = getFirstCardInfo();
+        var secondCardInfo = getSecondCardInfo();
+        var expectedBalanceFirstCard = dashboardPage.getFirstCardBalance() + amount;
+        var expectedBalanceSecondCard = dashboardPage.getSecondCardBalance() - amount;
+        var transferPage = dashboardPage.firstCardButton();
+        dashboardPage = transferPage.moneyTransfer(secondCardInfo, amount);
+        assertEquals(expectedBalanceFirstCard, dashboardPage.getFirstCardBalance());
+        assertEquals(expectedBalanceSecondCard, dashboardPage.getSecondCardBalance());
+    }
+
+    @Test
+    void shouldTransferFirstToSecondCardMoreSum() {
+        int amount = 20000;
+        var loginPage = new LoginPage();
+        var authInfo = DataHelper.getAuthInfo();
+        var verificationPage = loginPage.validLogin(authInfo);
+        var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
+        var dashboardPage = verificationPage.validVerify(verificationCode);
+        var firstCardInfo = getFirstCardInfo();
+        // var secondCardInfo = getSecondCardInfo();
+        var expectedBalanceFirstCard = dashboardPage.getFirstCardBalance() - amount;
+        var expectedBalanceSecondCard = dashboardPage.getSecondCardBalance() + amount;
+        var transferPage = dashboardPage.secondCardButton();
+        dashboardPage = transferPage.moneyTransfer(firstCardInfo, amount);
+        assertEquals(expectedBalanceFirstCard, dashboardPage.getFirstCardBalance());
+        assertEquals(expectedBalanceSecondCard, dashboardPage.getSecondCardBalance());
+    }
 }
